@@ -1,0 +1,14 @@
+version: '3'
+services:
+  graphite:
+    build: .
+    container_name: graphite
+    hostname: 'graphite'
+    volumes:
+     - .:/code
+    working_dir: /code
+    command: bash -c "
+      ./docker.sh &&
+      tail -f /dev/null"
+    ports:
+    - 8000:80
