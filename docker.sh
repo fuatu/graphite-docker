@@ -1,5 +1,14 @@
 #!/bin/sh
 echo "-------------------------"
+echo "check if installation needed"
+echo "-------------------------"
+FILE=/var/lib/graphite/graphite.db
+if [ -f "$FILE" ]; then
+    echo "Already installed exiting"
+    service apache2 start
+    exit 0
+fi
+echo "-------------------------"
 echo "install graphite carbon"
 echo "-------------------------"
 echo graphite-carbon graphite-carbon/postrm_remove_databases boolean true | debconf-set-selections
